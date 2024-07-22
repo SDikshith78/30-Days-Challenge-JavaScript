@@ -1,0 +1,185 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Day 10: Event Handling</title>
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+            box-sizing: border-box;
+            transition: all .2s linear;
+        }
+
+        #element1 {
+            width: 200px;
+            height: 200px;
+            border: 2px solid white;
+        }
+    </style>
+</head>
+
+<body style="background-color: black; color: white;">
+    <div class="task1">
+        <h2>Task 1</h2>
+        <p id="para1">Old Paragraph Content</p>
+        <button id="btn1">Click me</button>
+    </div>
+
+    <div class="task2">
+        <h2>Task 2</h2>
+        <img width="200px"
+            src="https://images.pexels.com/photos/757889/pexels-photo-757889.jpeg?auto=compress&cs=tinysrgb&w=600"
+            alt="" id="image1">
+    </div>
+    <br>
+    <div class="task3and4">
+        <h2>Task 3 and Task 4</h2>
+        <div id="element1"></div>
+    </div>
+    <br>
+    <div class="task5">
+        <h2>Task 5</h2>
+        <input type="text" id="input1">
+    </div>
+    <br>
+    <div class="task6">
+        <h2>Task 6</h2>
+        <input type="text" id="input2">
+        <p id="para2"></p>
+    </div>
+    <br>
+    <div class="task7">
+        <h2>Task 7</h2>
+        <form action="">
+            <p>
+                <label for="email">Email:</label>
+                <input type="email" name="" id="email">
+            </p>
+            <br>
+            <p>
+                <label for="pass">Password:</label>
+                <input type="password" id="pass">
+            </p>
+            <input type="submit" value="Submit" id="submit">
+
+        </form>
+    </div>
+    <br>
+    <div class="task8">
+        <h2>Task 8</h2>
+        <select name="" id="select">
+            <option value="beginner">beginner</option>
+            <option value="Intermidiate">Intermidiate</option>
+            <option value="Master">Master</option>
+        </select>
+        <p id="para3"></p>
+    </div>
+
+    <div class="task9">
+        <h2>Task 9</h2>
+        <ul id="ul">
+            <li>One</li>
+            <li>Two</li>
+            <li>Three</li>
+            <li>Four</li>
+        </ul>
+    </div>
+
+    <div class="task10">
+        <h2>Task 10</h2>
+        <div id="parent">
+            <button id="addButtons">Add Buttons</button>
+
+        </div>
+    </div>
+</body>
+<script>
+    //Activity 1: Basic Event Handling
+    //Task 1:
+    const para1 = document.querySelector('#para1');
+    const button1 = document.querySelector('#btn1');
+
+    button1.addEventListener("click", function (a) {
+        para1.innerHTML = 'Paragraph Content Changed!';
+    });
+
+    //Task 2:
+    const image1 = document.querySelector('#image1');
+    image1.addEventListener('dblclick', function (e) {
+        image1.style.visibility = 'hidden';
+    });
+
+    //Activity 2: Mouse Events
+    //Task 3: 
+    const element1 = document.querySelector('#element1');
+    element1.addEventListener('mouseover', function (e) {
+        element1.style.backgroundColor = 'red';
+    });
+
+    //Task 4:
+    element1.addEventListener('mouseout', function (e) {
+        element1.style.backgroundColor = 'black'
+    });
+
+    //Activity 3: Keyboard Events
+    //task 5:
+    const input1 = document.querySelector('#input1');
+
+    input1.addEventListener('keydown', function (e) {
+        console.log(e.key);
+    });
+
+    //Task 6:
+    const input2 = document.querySelector('#input2');
+    const para2 = document.querySelector('#para2');
+
+    input2.addEventListener('keyup', function (e) {
+        para2.innerHTML = e.key;
+    });
+
+    //Activity 4: Form Events
+    //Task 7:
+    const form = document.querySelector('form');
+    const submit = document.querySelector('#submit');
+    form.addEventListener('submit', function (e) {
+        e.preventDefault();
+        const email = document.querySelector('#email').value;
+        const password = document.querySelector('#pass').value;
+        console.log(`Email: ${email}, Password: ${password}`);
+    })
+
+    //Task 8:
+    const select = document.querySelector('#select');
+    const para3 = document.querySelector('#para3');
+    select.addEventListener('change', function (e) {
+        para3.innerHTML = `You Choose: ${e.target.value}`;
+    });
+
+    //Activity 5: Event Delegation
+    //Task 9:
+    const ul = document.querySelector('#ul');
+    ul.addEventListener('click', function (e) {
+        console.log(`You Clicked on: ${e.target.textContent}`);
+    }, false);
+
+    //Task 10:
+    const parent = document.querySelector('#parent');
+    const addButtons = document.querySelector('#addButtons');
+    parent.addEventListener('click', function (e) {
+        if (e.target.tagName === 'BUTTON') {
+            alert("Button Clicked!");
+        }
+    })
+    addButtons.addEventListener('click', function (e) {
+
+        const newElement = document.createElement('span');
+        newElement.innerText = 'New Span Element Added!';
+        parent.appendChild(newElement);
+    })
+
+</script>
+
+</html>
